@@ -1,0 +1,8 @@
+MyCompany\Oauth\DomainModel\UserEntity:
+  type: entity
+  table: user
+  id:
+    id:
+      type: guid
+      generator:
+        strategy: NONE

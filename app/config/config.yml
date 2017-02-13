@@ -68,6 +68,12 @@ doctrine:
               is_bundle: false
               prefix: MyCompany\Book\DomainModel
               alias: Book
+          Oauth:
+              type: yml
+              dir: "%kernel.root_dir%/config/doctrine/oauth/"
+              is_bundle: false
+              prefix: MyCompany\Oauth\DomainModel
+              alias: Oauth
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -98,3 +104,23 @@ fos_rest:
         json: true
     body_listener: true
     disable_csrf_role: ROLE_API
+
+fos_user:
+    db_driver: orm # other valid values are 'mongodb' and 'couchdb'
+    firewall_name: main
+    user_class: MyCompany\Oauth\DomainModel\UserEntity
+    from_email:
+      address: 'test'
+      sender_name: 'test'
+
+fos_oauth_server:
+    db_driver: orm       # Drivers available: orm, mongodb, or propel
+    client_class:        MyCompany\Oauth\DomainModel\ClientEntity
+    access_token_class:  MyCompany\Oauth\DomainModel\AccessTokenEntity
+    refresh_token_class: MyCompany\Oauth\DomainModel\RefreshTokenEntity
+    auth_code_class:     MyCompany\Oauth\DomainModel\AuthCodeEntity
+
+    service:
+        user_provider: fos_user.user_provider.username
+        options:
+          access_token_lifetime: 267840000 # 10 Years (Never expire)

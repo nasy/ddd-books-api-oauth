@@ -1,0 +1,20 @@
+MyCompany\Oauth\DomainModel\RefreshTokenEntity:
+  type: entity
+  table: refresh_token
+  id:
+    id:
+      type: guid
+      generator:
+        strategy: UUID
+  manyToOne:
+    client:
+      targetEntity: ClientEntity
+      joinColumn:
+          nullable: false
+          name: client_id
+          referencedColumnName: id
+    user:
+      targetEntity: UserEntity
+      joinColumn:
+      name: user_id
+      referencedColumnName: id

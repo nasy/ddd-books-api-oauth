@@ -3,3 +3,10 @@ api_v1:
     resource: "@AppBundle/Resources/Config/Routes/Routes.yml"
     type: rest
 
+# app/config/routing.yml
+fos_oauth_server_token:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
+
+fos_oauth_server_authorize:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/authorize.xml"
+

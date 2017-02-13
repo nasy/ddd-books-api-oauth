@@ -1,6 +1,6 @@
 MyCompany\Book\DomainModel\BookEntity:
   type: entity
-  table: books
+  table: book
   id:
     id:
       type: guid

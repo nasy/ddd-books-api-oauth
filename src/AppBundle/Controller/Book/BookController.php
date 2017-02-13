@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace AppBundle\Controller\Book;
 
 use Symfony\Component\HttpFoundation\Request;
 
@@ -45,14 +45,20 @@ class BookController extends FOSRestController
      */
     public function getBooksAction(Request $request, ParamFetcherInterface $paramFetcher)
     {
-        $offset = $paramFetcher->get('offset');
-        $offset = null == $offset ? 0 : $offset;
-        $limit = $paramFetcher->get('limit');
+        $user = $this->get('security.token_storage')->getToken()->getUser();
 
-        /** @var BookRepository $bookRepository */
-        $bookRepository = $this->container->get('my_company.book.repository');
-        $result = $bookRepository->getAll($limit, $offset);
-        $response = new ApiResponse(true, $result);
+        if (false === $this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            $response = new ApiResponse(false, null, 'Unauthorized');
+        } else {
+            $offset = $paramFetcher->get('offset');
+            $offset = null == $offset ? 0 : $offset;
+            $limit = $paramFetcher->get('limit');
+
+            /** @var BookRepository $bookRepository */
+            $bookRepository = $this->container->get('my_company.book.repository');
+            $result = $bookRepository->getAll($limit, $offset);
+            $response = new ApiResponse(true, $result);
+        }
         return $response->getFormattedResponse();
     }
 
@@ -89,7 +95,7 @@ class BookController extends FOSRestController
     }
 
     /**
-     * Create a Page from the submitted data.
+     * Create a Book from the submitted data.
      *
      * @ApiDoc(
      *   resource = true,

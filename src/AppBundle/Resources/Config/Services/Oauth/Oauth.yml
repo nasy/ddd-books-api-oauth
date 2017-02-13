@@ -1,0 +1,12 @@
+parameters:
+  my_company.oauth.user.entity.class: MyCompany\Oauth\DomainModel\UserEntity
+services:
+  my_company.oauth.user.repository:
+    class: MyCompany\Oauth\Infrastructure\Persistance\Doctrine\UserRepository
+    arguments: ['@doctrine.orm.entity_manager', '%my_company.oauth.user.entity.class%']
+
+  my_company.oauth.create_user.command_handler:
+        class: MyCompany\Oauth\Command\CreateUserCommandHandler
+        arguments: ['@my_company.oauth.user.repository', '@event_bus', '@security.encoder_factory']
+        tags:
+            - { name: command_handler, handles: MyCompany\Oauth\Command\CreateUserCommand }

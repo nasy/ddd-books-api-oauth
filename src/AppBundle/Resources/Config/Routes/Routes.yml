@@ -1,4 +1,9 @@
-api_v1:
+api_v1_book:
   type: rest
   resource: "Book/Book.yml"
+  name_prefix:  api_1_
+
+api_v1_user:
+  type: rest
+  resource: "Oauth/User.yml"
   name_prefix:  api_1_

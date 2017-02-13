@@ -1,2 +1,3 @@
 imports:
     - { resource: "Book/Book.yml" }
+    - { resource: "Oauth/Oauth.yml" }

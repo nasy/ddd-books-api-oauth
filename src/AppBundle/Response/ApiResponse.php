@@ -8,13 +8,13 @@ class ApiResponse
     private $status;
     private $data;
     /** @var string */
-    private $message;
+    private $errorKey;
 
-    public function __construct(bool $status = true, $data = null, string $message = '')
+    public function __construct(bool $status = true, $data = null, string $errorKey = '')
     {
         $this->status = $status;
         $this->data = $data;
-        $this->message = $message;
+        $this->errorKey = $errorKey;
     }
 
     public function getFormattedResponse(): array
@@ -24,8 +24,8 @@ class ApiResponse
         if (null !== $this->data) {
             $formattedResponse['data'] = $this->data;
         }
-        if (!empty($this->message)) {
-            $formattedResponse['message'] = $this->message;
+        if (!empty($this->errorKey)) {
+            $formattedResponse['error_key'] = $this->errorKey;
         }
         return $formattedResponse;
     }

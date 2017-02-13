@@ -1,0 +1,26 @@
+MyCompany\Oauth\DomainModel\ClientEntity:
+  type: entity
+  table: client
+  id:
+    id:
+      type: guid
+      generator:
+        strategy: UUID
+  fields:
+      name:
+        type: string
+        length: 255
+        nullable: true
+      randomId:
+        type: string
+        length: 255
+        nullable: true
+        column: random_id
+      secret:
+        type: string
+        length: 255
+        nullable: true
+      allowedGrantTypes:
+        type: array
+        nullable: true
+        column: allowed_grant_types
