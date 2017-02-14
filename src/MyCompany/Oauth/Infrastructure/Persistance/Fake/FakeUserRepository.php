@@ -12,13 +12,13 @@ class FakeUserRepository implements UserRepository
         return null;
     }
 
-    public function getById(string $id)
+    public function getById(string $id) : UserEntity
     {
         return new UserEntity();
     }
 
-    public function getAll(int $limit = null, int $offset = null)
+    public function doesUserExist(string $email) :bool
     {
-        return [new UserEntity()];
+        return false;
     }
 }

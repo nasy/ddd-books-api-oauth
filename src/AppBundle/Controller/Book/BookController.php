@@ -45,11 +45,11 @@ class BookController extends FOSRestController
      */
     public function getBooksAction(Request $request, ParamFetcherInterface $paramFetcher)
     {
-        $user = $this->get('security.token_storage')->getToken()->getUser();
+//        $user = $this->get('security.token_storage')->getToken()->getUser();
 
-        if (false === $this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
-            $response = new ApiResponse(false, null, 'Unauthorized');
-        } else {
+     //   if (false === $this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+     //       $response = new ApiResponse(false, null, 'Unauthorized');
+      //  } else {
             $offset = $paramFetcher->get('offset');
             $offset = null == $offset ? 0 : $offset;
             $limit = $paramFetcher->get('limit');
@@ -58,7 +58,7 @@ class BookController extends FOSRestController
             $bookRepository = $this->container->get('my_company.book.repository');
             $result = $bookRepository->getAll($limit, $offset);
             $response = new ApiResponse(true, $result);
-        }
+       // }
         return $response->getFormattedResponse();
     }
 

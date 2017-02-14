@@ -4,7 +4,7 @@ namespace MyCompany\Oauth\Command;
 
 use MyCompany\Oauth\DomainModel\UserEntity;
 use MyCompany\Oauth\DomainModel\UserRepository;
-use Symfony\Component\Security\Core\Encoder\EncoderFactory;
+use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 use MyCompany\Oauth\DomainModel\UserAlreadyExistsException;
 
 use SimpleBus\Message\Bus\MessageBus;
@@ -15,13 +15,13 @@ class CreateUserCommandHandler
     private $userRepository;
     /** @var MessageBus */
     private $eventBus;
-    /** @var EncoderFactory */
+    /** @var EncoderFactoryInterface */
     private $encoderFactory;
 
     public function __construct(
         UserRepository $userRepository,
         MessageBus $eventBus,
-        EncoderFactory $encoderFactory
+        EncoderFactoryInterface $encoderFactory
     ) {
         $this->userRepository = $userRepository;
         $this->eventBus = $eventBus;

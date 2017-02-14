@@ -8,7 +8,10 @@ use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
 class UserEntity extends BaseUser
 {
+    /** @var string */
     protected $id;
+    /** @var \DateTime */
+    private $createdAt;
 
     static public function create(
         EncoderFactoryInterface $encoderFactory,
@@ -33,7 +36,16 @@ class UserEntity extends BaseUser
         $self->setPassword($encodedPassword);
 
         $self->confirmationToken = md5(uniqid(rand(), true));
+        $self->createdAt = new \Datetime("now");
 
         return $self;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function createdAt() : \DateTime
+    {
+        return $this->createdAt;
     }
 }

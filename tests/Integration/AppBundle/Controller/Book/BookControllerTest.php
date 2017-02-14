@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\Integration\AppBundle\Controller;
+namespace tests\Integration\AppBundle\Controller\Book;
 
 use Liip\FunctionalTestBundle\Test\WebTestCase;
 use Symfony\Bundle\FrameworkBundle\Client;
